@@ -1,4 +1,4 @@
-# 🦞 Moltbot — Personal AI Assistant
+# 🦞 Moltbot — Personal AI Assistant (Windows Enhanced Fork)
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/moltbot/moltbot/main/docs/whatsapp-clawd.jpg" alt="Clawdbot" width="400">
@@ -9,12 +9,12 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/moltbot/moltbot/actions/workflows/ci.yml?branch=main"><img src="https://img.shields.io/github/actions/workflow/status/moltbot/moltbot/ci.yml?branch=main&style=for-the-badge" alt="CI status"></a>
-  <a href="https://github.com/moltbot/moltbot/releases"><img src="https://img.shields.io/github/v/release/moltbot/moltbot?include_prereleases&style=for-the-badge" alt="GitHub release"></a>
-  <a href="https://deepwiki.com/moltbot/moltbot"><img src="https://img.shields.io/badge/DeepWiki-moltbot-111111?style=for-the-badge" alt="DeepWiki"></a>
-  <a href="https://discord.gg/clawd"><img src="https://img.shields.io/discord/1456350064065904867?label=Discord&logo=discord&logoColor=white&color=5865F2&style=for-the-badge" alt="Discord"></a>
+  <a href="https://github.com/Joinsyna-Co-Ltd/moltbot-new/actions"><img src="https://img.shields.io/badge/Windows-Native%20Support-0078D6?style=for-the-badge&logo=windows" alt="Windows Native Support"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" alt="MIT License"></a>
+  <a href="https://discord.gg/clawd"><img src="https://img.shields.io/discord/1456350064065904867?label=Discord&logo=discord&logoColor=white&color=5865F2&style=for-the-badge" alt="Discord"></a>
 </p>
+
+> 🎉 **This is an enhanced fork with full Windows native support!** The original [moltbot/moltbot](https://github.com/moltbot/moltbot) only supports Windows via WSL2. This fork adds **native Windows support** - no WSL2 required!
 
 **Moltbot** is a *personal AI assistant* you run on your own devices.
 It answers you on the channels you already use (WhatsApp, Telegram, Slack, Discord, Google Chat, Signal, iMessage, Microsoft Teams, WebChat), plus extension channels like BlueBubbles, Matrix, Zalo, and Zalo Personal. It can speak and listen on macOS/iOS/Android, and can render a live Canvas you control. The Gateway is just the control plane — the product is the assistant.
@@ -23,10 +23,37 @@ If you want a personal, single-user assistant that feels local, fast, and always
 
 **[中文文档 / Chinese README](README.zh-CN.md)**
 
-[Website](https://molt.bot) · [Docs](https://docs.molt.bot) · [Getting Started](https://docs.molt.bot/start/getting-started) · [Updating](https://docs.molt.bot/install/updating) · [Showcase](https://docs.molt.bot/start/showcase) · [FAQ](https://docs.molt.bot/start/faq) · [Wizard](https://docs.molt.bot/start/wizard) · [Nix](https://github.com/moltbot/nix-clawdbot) · [Docker](https://docs.molt.bot/install/docker) · [Discord](https://discord.gg/clawd)
+## ✨ What's New in This Fork
 
-Preferred setup: run the onboarding wizard (`moltbot onboard`). It walks through gateway, workspace, channels, and skills. The CLI wizard is the recommended path and works on **macOS, Linux, and Windows (via WSL2; strongly recommended)**.
-Works with npm, pnpm, or bun.
+| Feature | Original | This Fork |
+|---------|----------|-----------|
+| Windows Native | ❌ WSL2 only | ✅ **Full native support** |
+| One-click Install | ❌ | ✅ PowerShell script |
+| Chinese Docs | ❌ | ✅ Complete |
+| Quick Start Script | ❌ | ✅ Included |
+
+[Docs](https://docs.molt.bot) · [Getting Started](https://docs.molt.bot/start/getting-started) · [FAQ](https://docs.molt.bot/start/faq) · [Discord](https://discord.gg/clawd)
+
+## 🚀 Windows One-Click Install
+
+**Run this in PowerShell (as Administrator):**
+
+```powershell
+irm https://raw.githubusercontent.com/Joinsyna-Co-Ltd/moltbot-new/main/scripts/install-windows.ps1 | iex
+```
+
+This script will:
+- ✅ Check Node.js (v22+) and Git
+- ✅ Install pnpm if needed
+- ✅ Clone the repository
+- ✅ Install dependencies
+- ✅ Build the project
+
+After installation, follow the on-screen instructions to configure and start.
+
+## Quick Start (All Platforms)
+
+Works with npm, pnpm, or bun. Runtime: **Node ≥22**.
 New install? Start here: [Getting started](https://docs.molt.bot/start/getting-started)
 
 **Subscriptions (OAuth):**
@@ -97,8 +124,8 @@ Details: [Development channels](https://docs.molt.bot/install/development-channe
 Prefer `pnpm` for builds from source. Bun is optional for running TypeScript directly.
 
 ```bash
-git clone https://github.com/moltbot/moltbot.git
-cd moltbot
+git clone https://github.com/Joinsyna-Co-Ltd/moltbot-new.git
+cd moltbot-new
 
 pnpm install
 pnpm ui:build # auto-installs UI deps on first run
@@ -126,10 +153,19 @@ Moltbot now fully supports **native Windows** (no WSL2 required).
 
 ### Windows Quick Start
 
+**Option 1: One-Click Install (Recommended)**
+
+```powershell
+# Run in PowerShell as Administrator
+irm https://raw.githubusercontent.com/Joinsyna-Co-Ltd/moltbot-new/main/scripts/install-windows.ps1 | iex
+```
+
+**Option 2: Manual Install**
+
 ```powershell
 # Clone and build
-git clone https://github.com/moltbot/moltbot.git
-cd moltbot
+git clone https://github.com/Joinsyna-Co-Ltd/moltbot-new.git
+cd moltbot-new
 
 # Install dependencies
 pnpm install

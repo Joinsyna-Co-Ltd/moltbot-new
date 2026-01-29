@@ -1,4 +1,4 @@
-# 🦞 Moltbot — 个人 AI 助手
+# 🦞 Moltbot — 个人 AI 助手 (Windows 增强版)
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/moltbot/moltbot/main/docs/whatsapp-clawd.jpg" alt="Clawdbot" width="400">
@@ -9,12 +9,12 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/moltbot/moltbot/actions/workflows/ci.yml?branch=main"><img src="https://img.shields.io/github/actions/workflow/status/moltbot/moltbot/ci.yml?branch=main&style=for-the-badge" alt="CI status"></a>
-  <a href="https://github.com/moltbot/moltbot/releases"><img src="https://img.shields.io/github/v/release/moltbot/moltbot?include_prereleases&style=for-the-badge" alt="GitHub release"></a>
-  <a href="https://deepwiki.com/moltbot/moltbot"><img src="https://img.shields.io/badge/DeepWiki-moltbot-111111?style=for-the-badge" alt="DeepWiki"></a>
-  <a href="https://discord.gg/clawd"><img src="https://img.shields.io/discord/1456350064065904867?label=Discord&logo=discord&logoColor=white&color=5865F2&style=for-the-badge" alt="Discord"></a>
+  <a href="https://github.com/Joinsyna-Co-Ltd/moltbot-new"><img src="https://img.shields.io/badge/Windows-原生支持-0078D6?style=for-the-badge&logo=windows" alt="Windows 原生支持"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" alt="MIT License"></a>
+  <a href="https://discord.gg/clawd"><img src="https://img.shields.io/discord/1456350064065904867?label=Discord&logo=discord&logoColor=white&color=5865F2&style=for-the-badge" alt="Discord"></a>
 </p>
+
+> 🎉 **这是一个增强版 Fork，完全支持 Windows 原生运行！** 原版 [moltbot/moltbot](https://github.com/moltbot/moltbot) 仅支持通过 WSL2 在 Windows 上运行。本 Fork 添加了 **Windows 原生支持** - 无需 WSL2！
 
 **Moltbot** 是一个运行在您自己设备上的*个人 AI 助手*。
 它可以在您已经使用的渠道上回复您（WhatsApp、Telegram、Slack、Discord、Google Chat、Signal、iMessage、Microsoft Teams、WebChat），以及扩展渠道如 BlueBubbles、Matrix、Zalo 等。它可以在 macOS/iOS/Android 上进行语音交互，并可以渲染您控制的实时画布。Gateway 只是控制平面——产品是助手本身。
@@ -23,7 +23,33 @@
 
 **[English README](README.md)**
 
-[官网](https://molt.bot) · [文档](https://docs.molt.bot) · [快速开始](https://docs.molt.bot/start/getting-started) · [更新指南](https://docs.molt.bot/install/updating) · [展示](https://docs.molt.bot/start/showcase) · [常见问题](https://docs.molt.bot/start/faq) · [向导](https://docs.molt.bot/start/wizard) · [Docker](https://docs.molt.bot/install/docker) · [Discord](https://discord.gg/clawd)
+## ✨ 本 Fork 的改进
+
+| 功能 | 原版 | 本 Fork |
+|------|------|---------|
+| Windows 原生支持 | ❌ 仅 WSL2 | ✅ **完全原生支持** |
+| 一键安装脚本 | ❌ | ✅ PowerShell 脚本 |
+| 中文文档 | ❌ | ✅ 完整中文文档 |
+| 快速启动脚本 | ❌ | ✅ 已包含 |
+
+[文档](https://docs.molt.bot) · [快速开始](https://docs.molt.bot/start/getting-started) · [常见问题](https://docs.molt.bot/start/faq) · [Discord](https://discord.gg/clawd)
+
+## 🚀 Windows 一键安装
+
+**在 PowerShell 中运行（以管理员身份）：**
+
+```powershell
+irm https://raw.githubusercontent.com/Joinsyna-Co-Ltd/moltbot-new/main/scripts/install-windows.ps1 | iex
+```
+
+此脚本将自动：
+- ✅ 检查 Node.js (v22+) 和 Git
+- ✅ 安装 pnpm（如果需要）
+- ✅ 克隆仓库
+- ✅ 安装依赖
+- ✅ 构建项目
+
+安装完成后，按照屏幕上的说明进行配置和启动。
 
 ---
 
@@ -69,8 +95,8 @@ moltbot onboard --install-daemon
 ### 方法二：从源码构建
 
 ```bash
-git clone https://github.com/moltbot/moltbot.git
-cd moltbot
+git clone https://github.com/Joinsyna-Co-Ltd/moltbot-new.git
+cd moltbot-new
 
 pnpm install
 pnpm build
@@ -94,12 +120,21 @@ Moltbot 现在完全支持 **Windows 原生运行**（无需 WSL2）。
 
 ### Windows 快速开始（详细步骤）
 
+**方式一：一键安装（推荐）**
+
+```powershell
+# 以管理员身份运行 PowerShell，执行：
+irm https://raw.githubusercontent.com/Joinsyna-Co-Ltd/moltbot-new/main/scripts/install-windows.ps1 | iex
+```
+
+**方式二：手动安装**
+
 #### 步骤 1：克隆项目
 
 ```powershell
 # 打开 PowerShell（以管理员身份运行可获得更好的体验）
-git clone https://github.com/moltbot/moltbot.git
-cd moltbot
+git clone https://github.com/Joinsyna-Co-Ltd/moltbot-new.git
+cd moltbot-new
 ```
 
 #### 步骤 2：安装依赖
@@ -410,8 +445,8 @@ moltbot config set gateway.mode local
 
 ```powershell
 # 克隆仓库
-git clone https://github.com/moltbot/moltbot.git
-cd moltbot
+git clone https://github.com/Joinsyna-Co-Ltd/moltbot-new.git
+cd moltbot-new
 
 # 安装依赖
 pnpm install
@@ -442,8 +477,9 @@ pnpm format
 ## 社区
 
 - [Discord](https://discord.gg/clawd) - 加入我们的社区讨论
-- [GitHub Issues](https://github.com/moltbot/moltbot/issues) - 报告问题或提出建议
+- [GitHub Issues](https://github.com/Joinsyna-Co-Ltd/moltbot-new/issues) - 报告问题或提出建议
 - [贡献指南](CONTRIBUTING.md) - 了解如何参与贡献
+- [原版仓库](https://github.com/moltbot/moltbot) - 上游项目
 
 ## 许可证
 
