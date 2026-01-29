@@ -1,0 +1,112 @@
+import { __decorate } from "tslib";
+import { Enumerable } from '@d-fischer/shared-utils';
+import { checkRelationAssertion, DataObject, rawDataSymbol, rtfm } from '@twurple/common';
+import { HelixHypeTrainContribution } from './HelixHypeTrainContribution.js';
+/**
+ * Data about the currently running Hype Train.
+ */
+let HelixHypeTrain = class HelixHypeTrain extends DataObject {
+    /** @internal */ _client;
+    /** @internal */
+    constructor(data, client) {
+        super(data);
+        this._client = client;
+    }
+    /**
+     * The unique ID of the Hype Train event.
+     */
+    get eventId() {
+        return this[rawDataSymbol].id;
+    }
+    /**
+     * The unique ID of the Hype Train.
+     */
+    get id() {
+        return this[rawDataSymbol].id;
+    }
+    /**
+     * The user ID of the broadcaster where the Hype Train is happening.
+     */
+    get broadcasterId() {
+        return this[rawDataSymbol].broadcaster_user_id;
+    }
+    /**
+     * The name of the broadcaster where the Hype Train is happening.
+     */
+    get broadcasterName() {
+        return this[rawDataSymbol].broadcaster_user_login;
+    }
+    /**
+     * The display name of the broadcaster where the Hype Train is happening.
+     */
+    get broadcasterDisplayName() {
+        return this[rawDataSymbol].broadcaster_user_name;
+    }
+    /**
+     * Gets more information about the broadcaster where the Hype Train is happening.
+     */
+    async getBroadcaster() {
+        return checkRelationAssertion(await this._client.users.getUserById(this[rawDataSymbol].broadcaster_user_id));
+    }
+    /**
+     * The level of the Hype Train.
+     */
+    get level() {
+        return this[rawDataSymbol].level;
+    }
+    /**
+     * The total amount of progress points of the Hype Train.
+     */
+    get total() {
+        return this[rawDataSymbol].total;
+    }
+    /**
+     * The amount progress points for the current level of the Hype Train.
+     */
+    get progress() {
+        return this[rawDataSymbol].progress;
+    }
+    /**
+     * The progress points goal to reach the next Hype Train level.
+     */
+    get goal() {
+        return this[rawDataSymbol].goal;
+    }
+    /**
+     * Array list of the top contributions to the Hype Train event for bits and subs.
+     */
+    get topContributions() {
+        return this[rawDataSymbol].top_contributions.map(cont => new HelixHypeTrainContribution(cont, this._client));
+    }
+    /**
+     * The time when the Hype Train started.
+     */
+    get startDate() {
+        return new Date(this[rawDataSymbol].started_at);
+    }
+    /**
+     * The time when the Hype Train is set to expire.
+     */
+    get expiryDate() {
+        return new Date(this[rawDataSymbol].expires_at);
+    }
+    /**
+     * The type of the Hype Train.
+     */
+    get type() {
+        return this[rawDataSymbol].type;
+    }
+    /**
+     * Whether the Hype Train is a shared train.
+     */
+    get isSharedTrain() {
+        return this[rawDataSymbol].is_shared_train;
+    }
+};
+__decorate([
+    Enumerable(false)
+], HelixHypeTrain.prototype, "_client", void 0);
+HelixHypeTrain = __decorate([
+    rtfm('api', 'HelixHypeTrain', 'id')
+], HelixHypeTrain);
+export { HelixHypeTrain };

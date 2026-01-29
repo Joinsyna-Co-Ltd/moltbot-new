@@ -1,0 +1,57 @@
+{
+  "name": "@d-fischer/cache-decorators",
+  "version": "4.0.1",
+  "description": "",
+  "keywords": [],
+  "main": "lib",
+  "types": "lib",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "require": "./lib/index.js",
+      "import": "./es/index.mjs"
+    }
+  },
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/d-fischer/cache-decorators.git"
+  },
+  "author": "Daniel Fischer <daniel@d-fischer.dev>",
+  "license": "MIT",
+  "dependencies": {
+    "@d-fischer/shared-utils": "^3.6.3",
+    "tslib": "^2.6.2"
+  },
+  "devDependencies": {
+    "@d-fischer/eslint-config": "^6.1.8",
+    "eslint": "^8.50.0",
+    "husky": "^4.3.8",
+    "lint-staged": "^14.0.1",
+    "prettier": "^3.0.3",
+    "tsukuru": "^0.8.0",
+    "typescript": "~5.2.2"
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib",
+    "es"
+  ],
+  "scripts": {
+    "lint": "eslint --ext ts src",
+    "prettier:check": "prettier --check 'src/**'",
+    "prettier:fix": "prettier --write 'src/**'",
+    "build": "tsukuru",
+    "rebuild": "tsukuru --clean"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,json}": "prettier --write",
+    "*.{ts}": "eslint --fix"
+  }
+}

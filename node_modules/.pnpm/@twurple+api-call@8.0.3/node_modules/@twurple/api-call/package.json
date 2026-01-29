@@ -1,0 +1,44 @@
+{
+  "name": "@twurple/api-call",
+  "version": "8.0.3",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "A light wrapper around the Twitch API.",
+  "keywords": [
+    "twitch",
+    "api",
+    "stream",
+    "bot"
+  ],
+  "sideEffects": false,
+  "type": "module",
+  "main": "lib",
+  "types": "lib",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "default": "./lib/index.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/twurple/twurple.git",
+    "directory": "packages/api-call"
+  },
+  "homepage": "https://twurple.js.org",
+  "author": "Daniel Fischer <daniel@d-fischer.dev>",
+  "funding": "https://github.com/sponsors/d-fischer",
+  "license": "MIT",
+  "dependencies": {
+    "@d-fischer/shared-utils": "^3.6.1",
+    "@twurple/common": "8.0.3",
+    "tslib": "^2.0.3"
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib",
+    "!lib/**/*.d.ts.map"
+  ]
+}

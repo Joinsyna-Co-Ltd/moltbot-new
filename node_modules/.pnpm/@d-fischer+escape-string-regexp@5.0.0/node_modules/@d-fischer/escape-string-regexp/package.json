@@ -1,0 +1,36 @@
+{
+	"name": "@d-fischer/escape-string-regexp",
+	"version": "5.0.0",
+	"description": "Escape RegExp special characters",
+	"license": "MIT",
+	"repository": "d-fischer/escape-string-regexp",
+	"author": {
+		"name": "Daniel Fischer",
+		"email": "daniel@d-fischer.dev"
+	},
+	"engines": {
+		"node": ">=10"
+	},
+	"scripts": {
+		"test": "xo && ava && tsd"
+	},
+	"files": [
+		"index.js",
+		"index.d.ts"
+	],
+	"keywords": [
+		"escape",
+		"regex",
+		"regexp",
+		"regular",
+		"expression",
+		"string",
+		"special",
+		"characters"
+	],
+	"devDependencies": {
+		"ava": "^1.4.1",
+		"tsd": "^0.11.0",
+		"xo": "^0.28.3"
+	}
+}

@@ -1,0 +1,67 @@
+{
+  "version": "3.0.0",
+  "license": "MIT",
+  "name": "@urbit/aura",
+  "module": "dist/aura.esm.js",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=16",
+    "npm": ">=8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/urbit/aura-js"
+  },
+  "scripts": {
+    "start": "dts watch",
+    "build": "dts build",
+    "test": "dts test",
+    "prepare": "dts build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+  },
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^8.2.4",
+    "@tsconfig/recommended": "^1.0.2",
+    "dts-cli": "^2.0.0",
+    "husky": "^7.0.4",
+    "tslib": "^2.5.0",
+    "typescript": "^5.0.4"
+  },
+  "jest": {
+    "verbose": true
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "dts lint"
+    }
+  },
+  "size-limit": [
+    {
+      "path": "dist/aura.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/aura.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "browserslist": {
+    "production": [
+      "chrome >= 67",
+      "edge >= 79",
+      "firefox >= 68",
+      "opera >= 54",
+      "safari >= 14"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

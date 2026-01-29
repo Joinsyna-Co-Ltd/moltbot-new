@@ -1,0 +1,9 @@
+export function isNullish(value) {
+    return value == null;
+}
+export function mapNullable(value, cb) {
+    return isNullish(value) ? null : cb(value);
+}
+export function mapOptional(value, cb) {
+    return isNullish(value) ? undefined : cb(value);
+}

@@ -1,0 +1,49 @@
+{
+  "name": "@twurple/auth",
+  "version": "8.0.3",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Authenticate with Twitch and stop caring about refreshing tokens.",
+  "keywords": [
+    "twitch",
+    "auth",
+    "authentication",
+    "oauth",
+    "stream",
+    "bot"
+  ],
+  "sideEffects": false,
+  "type": "module",
+  "main": "lib",
+  "types": "lib",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "default": "./lib/index.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/twurple/twurple.git",
+    "directory": "packages/auth"
+  },
+  "homepage": "https://twurple.js.org",
+  "author": "Daniel Fischer <daniel@d-fischer.dev>",
+  "funding": "https://github.com/sponsors/d-fischer",
+  "license": "MIT",
+  "dependencies": {
+    "@d-fischer/logger": "^4.2.1",
+    "@d-fischer/shared-utils": "^3.6.1",
+    "@d-fischer/typed-event-emitter": "^3.3.1",
+    "@twurple/api-call": "8.0.3",
+    "@twurple/common": "8.0.3",
+    "tslib": "^2.0.3"
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib",
+    "!lib/**/*.d.ts.map"
+  ]
+}

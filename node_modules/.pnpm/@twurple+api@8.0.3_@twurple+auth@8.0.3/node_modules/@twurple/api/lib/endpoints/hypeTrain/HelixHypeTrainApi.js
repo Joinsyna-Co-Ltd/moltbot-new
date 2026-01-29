@@ -1,0 +1,37 @@
+import { createBroadcasterQuery } from '@twurple/api-call';
+import { extractUserId } from '@twurple/common';
+import { BaseApi } from '../BaseApi.js';
+import { HelixHypeTrainStatus } from './HelixHypeTrainStatus.js';
+/**
+ * The Helix API methods that deal with Hype Trains.
+ *
+ * Can be accessed using `client.hypeTrain` on an {@link ApiClient} instance.
+ *
+ * ## Example
+ * ```ts
+ * const api = new ApiClient({ authProvider });
+ * const hypeTrainStatus = await api.hypeTrain.getHypeTrainStatusForBroadcaster('125328655');
+ * ```
+ *
+ * @meta category helix
+ * @meta categorizedTitle Hype Trains
+ */
+export class HelixHypeTrainApi extends BaseApi {
+    /**
+     * Gets the Hype Train status and statistics for the specified broadcaster.
+     *
+     * @param broadcaster The broadcaster to fetch Hype Train info for.
+     */
+    async getHypeTrainStatusForBroadcaster(broadcaster) {
+        const result = await this._client.callApi({
+            type: 'helix',
+            url: 'hypetrain/status',
+            userId: extractUserId(broadcaster),
+            scopes: ['channel:read:hype_train'],
+            query: {
+                ...createBroadcasterQuery(broadcaster),
+            },
+        });
+        return new HelixHypeTrainStatus(result.data[0], this._client);
+    }
+}

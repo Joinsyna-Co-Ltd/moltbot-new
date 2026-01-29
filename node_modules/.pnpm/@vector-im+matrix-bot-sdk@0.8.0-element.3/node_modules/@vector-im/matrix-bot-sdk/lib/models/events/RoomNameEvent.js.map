@@ -1,0 +1,1 @@
+{"version":3,"file":"RoomNameEvent.js","sourceRoot":"","sources":["../../../src/models/events/RoomNameEvent.ts"],"names":[],"mappings":";;;AAAA,2CAAyC;AAWzC;;;GAGG;AACH,MAAa,aAAc,SAAQ,sBAAgC;IAC/D,YAAY,KAAU;QAClB,KAAK,CAAC,KAAK,CAAC,CAAC;IACjB,CAAC;IAED;;OAEG;IACH,IAAW,IAAI;QACX,OAAO,IAAI,CAAC,OAAO,CAAC,IAAI,CAAC;IAC7B,CAAC;CACJ;AAXD,sCAWC"}

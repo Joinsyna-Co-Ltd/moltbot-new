@@ -1,0 +1,9 @@
+import type { RateLimiter } from '../RateLimiter';
+export declare class NullRateLimiter<Req, Res> implements RateLimiter<Req, Res> {
+    private readonly _callback;
+    constructor(_callback: (req: Req) => Promise<Res>);
+    request(req: Req): Promise<Res>;
+    clear(): void;
+    pause(): void;
+    resume(): void;
+}

@@ -1,0 +1,57 @@
+{
+  "name": "@d-fischer/shared-utils",
+  "version": "3.6.4",
+  "description": "",
+  "keywords": [],
+  "main": "lib",
+  "types": "lib",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "require": "./lib/index.js",
+      "import": "./es/index.mjs"
+    }
+  },
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/d-fischer/shared-utils.git"
+  },
+  "author": "Daniel Fischer <daniel@d-fischer.dev>",
+  "funding": "https://github.com/sponsors/d-fischer",
+  "license": "MIT",
+  "dependencies": {
+    "tslib": "^2.4.1"
+  },
+  "devDependencies": {
+    "@d-fischer/eslint-config": "^6.1.8",
+    "eslint": "^8.40.0",
+    "husky": "^4.3.0",
+    "lint-staged": "^13.2.2",
+    "prettier": "^2.8.8",
+    "tsukuru": "^0.8.0",
+    "typescript": "~5.0.4"
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib",
+    "es"
+  ],
+  "scripts": {
+    "lint": "eslint --ext ts src",
+    "prettier:check": "prettier --check 'src/**'",
+    "prettier:fix": "prettier --write 'src/**'",
+    "build": "tsukuru",
+    "rebuild": "tsukuru --clean"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,json}": "prettier --write",
+    "*.{ts}": "eslint --fix"
+  }
+}

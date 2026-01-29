@@ -1,0 +1,43 @@
+{
+  "name": "@twurple/common",
+  "version": "8.0.3",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Common functions used by the `@twurple` library family.",
+  "keywords": [
+    "twitch",
+    "common",
+    "functions"
+  ],
+  "sideEffects": false,
+  "type": "module",
+  "main": "lib",
+  "types": "lib",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "default": "./lib/index.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/twurple/twurple.git",
+    "directory": "packages/common"
+  },
+  "homepage": "https://twurple.js.org",
+  "author": "Daniel Fischer <daniel@d-fischer.dev>",
+  "funding": "https://github.com/sponsors/d-fischer",
+  "license": "MIT",
+  "dependencies": {
+    "@d-fischer/shared-utils": "^3.6.1",
+    "klona": "^2.0.4",
+    "tslib": "^2.0.3"
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib",
+    "!lib/**/*.d.ts.map"
+  ]
+}

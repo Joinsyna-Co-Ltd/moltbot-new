@@ -1,0 +1,7 @@
+import { __read } from "tslib";
+export function forEachObjectEntry(obj, fn) {
+    Object.entries(obj).forEach(function (_a) {
+        var _b = __read(_a, 2), key = _b[0], value = _b[1];
+        return fn(value, key);
+    });
+}

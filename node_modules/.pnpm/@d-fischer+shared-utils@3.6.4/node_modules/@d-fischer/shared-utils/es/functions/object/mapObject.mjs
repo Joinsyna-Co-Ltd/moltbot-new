@@ -1,0 +1,11 @@
+import { __read, __spreadArray } from "tslib";
+export function mapObject(obj, fn) {
+    var mapped = Object.entries(obj).map(
+    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+    function (_a) {
+        var _b;
+        var _c = __read(_a, 2), key = _c[0], value = _c[1];
+        return (_b = {}, _b[key] = fn(value, key), _b);
+    });
+    return Object.assign.apply(Object, __spreadArray([{}], __read(mapped), false));
+}

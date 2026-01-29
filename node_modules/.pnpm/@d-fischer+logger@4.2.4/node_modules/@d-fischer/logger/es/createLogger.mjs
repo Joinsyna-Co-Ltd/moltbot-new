@@ -1,0 +1,13 @@
+import { isNode } from '@d-fischer/detect-node';
+import { BrowserLogger } from "./BrowserLogger.mjs";
+import { CustomLoggerWrapper } from "./CustomLoggerWrapper.mjs";
+import { NodeLogger } from "./NodeLogger.mjs";
+export function createLogger(options) {
+    if (options.custom) {
+        return new CustomLoggerWrapper(options);
+    }
+    if (isNode) {
+        return new NodeLogger(options);
+    }
+    return new BrowserLogger(options);
+}

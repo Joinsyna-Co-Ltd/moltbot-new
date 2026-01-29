@@ -1,0 +1,25 @@
+const path = require('path');
+const { DownloaderHelper } = require('./dist');
+(async () => {
+    const download = new DownloaderHelper('http://download.microsoft.com/download/0/5/6/056dcda9-d667-4e27-8001-8a0c6971d6b1/vcredist_x64.exe',
+        path.join(__dirname, './example'), {
+        removeOnFail: false,
+        resumeIfFileExists: true,
+        timeout: 30000,
+    });
+    download.on('progress.throttled', stats => console.log(`Download @ ${Math.ceil(stats.progress)}%`))
+        .on('start', (...args) => console.log(`Started`, args))
+        .on('download', (...args) => console.log(`Download Initalized`, args))
+        .on('error', err => console.log(`Download failed 1`, err))
+        .on('redirected', (newUrl, oldUrl) => console.log(`Redirect`, newUrl, oldUrl))
+        .on('end', () => console.log(`Download completed`))
+        .on('retry', (...args) => console.log('retry', args))
+        .on('resume', (...args) => console.log('resume', args))
+        .on('warning', (err) => console.log('warning', err.message));
+    const info = await download.getTotalSize();
+    console.log('SIZE', info);
+    try {
+        await download.start();
+    } catch (err) { console.log(`Download failed 2`, err); };
+
+})();

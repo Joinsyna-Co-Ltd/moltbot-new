@@ -1,0 +1,64 @@
+{
+  "name": "@d-fischer/rate-limiter",
+  "version": "1.1.0",
+  "description": "Rate limit your requests.",
+  "keywords": [
+    "rate",
+    "limit",
+    "http",
+    "request"
+  ],
+  "main": "lib",
+  "types": "lib",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "require": "./lib/index.js",
+      "import": "./es/index.mjs"
+    }
+  },
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/d-fischer/rate-limiter.git"
+  },
+  "author": "Daniel Fischer <daniel@d-fischer.dev>",
+  "funding": "https://github.com/sponsors/d-fischer",
+  "license": "MIT",
+  "dependencies": {
+    "@d-fischer/logger": "^4.2.3",
+    "@d-fischer/shared-utils": "^3.6.3",
+    "tslib": "^2.6.2"
+  },
+  "devDependencies": {
+    "@d-fischer/eslint-config": "^6.2.2",
+    "eslint": "^8.51.0",
+    "husky": "^4.3.6",
+    "lint-staged": "^14.0.1",
+    "prettier": "^3.0.3",
+    "tsukuru": "^0.8.0",
+    "typescript": "~5.2.2"
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib",
+    "es"
+  ],
+  "scripts": {
+    "lint": "eslint --ext js,ts src",
+    "prettier:check": "prettier --check 'src/**'",
+    "prettier:fix": "prettier --write 'src/**'",
+    "build": "tsukuru",
+    "rebuild": "tsukuru --clean"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,json}": "prettier --write",
+    "*.{ts}": "eslint --fix"
+  }
+}

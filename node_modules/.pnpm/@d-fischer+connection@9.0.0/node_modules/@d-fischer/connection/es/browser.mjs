@@ -1,0 +1,4 @@
+export { AbstractConnection } from "./AbstractConnection.mjs";
+export { DirectConnection } from "./DirectConnection-stub.mjs";
+export { PersistentConnection } from "./PersistentConnection.mjs";
+export { WebSocketConnection } from "./WebSocketConnection.mjs";

@@ -1,0 +1,31 @@
+{
+  "name": "@d-fischer/deprecate",
+  "version": "2.0.2",
+  "description": "Mark methods as deprecated and warn the user when they're called",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./index.js",
+      "import": "./index.mjs"
+    },
+    "./package": "./package.json",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/d-fischer/node-deprecate.git"
+  },
+  "keywords": [
+    "deprecate"
+  ],
+  "author": "Daniel Fischer <daniel@d-fischer.dev>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^12.12.62",
+    "mocha": "~1.8.1"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "name": "@d-fischer/isomorphic-ws",
+  "version": "7.0.2",
+  "description": "Isomorphic implementation of WebSocket",
+  "main": "node",
+  "browser": "browser",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "browser": {
+        "require": "./browser.js",
+        "import": "./browser.mjs"
+      },
+      "require": "./node.js",
+      "import": "./node.mjs"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/d-fischer/isomorphic-ws.git"
+  },
+  "keywords": [
+    "browser",
+    "browsers",
+    "isomorphic",
+    "node",
+    "websocket",
+    "ws"
+  ],
+  "author": "Daniel Fischer <daniel@d-fischer.dev>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/d-fischer/isomorphic-ws/issues"
+  },
+  "homepage": "https://github.com/d-fischer/isomorphic-ws#readme",
+  "peerDependencies": {
+    "ws": "^8.2.0"
+  },
+  "files": [
+    "index.d.ts",
+    "node.js",
+    "node.mjs",
+    "browser.js",
+    "browser.mjs",
+    "README.md"
+  ],
+  "devDependencies": {
+    "@types/ws": "^8.2.0",
+    "ws": "^8.2.2"
+  }
+}

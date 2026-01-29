@@ -1,0 +1,1 @@
+{"version":3,"file":"PresenceEvent.js","sourceRoot":"","sources":["../../../src/models/events/PresenceEvent.ts"],"names":[],"mappings":";;;AAAA,mCAAsC;AAqDtC;;;GAGG;AACH,MAAa,aAAc,SAAQ,mBAAiC;IAChE,YAAY,KAAU;QAClB,KAAK,CAAC,KAAK,CAAC,CAAC;IACjB,CAAC;IAED;;OAEG;IACH,IAAW,QAAQ;QACf,OAAO,IAAI,CAAC,OAAO,CAAC,QAAQ,CAAC;IACjC,CAAC;CACJ;AAXD,sCAWC"}

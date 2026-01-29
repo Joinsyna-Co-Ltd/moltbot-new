@@ -1,0 +1,11 @@
+import type { EventEmitter } from './EventEmitter';
+export declare class Listener {
+    readonly owner: EventEmitter;
+    readonly event: Function;
+    readonly listener: Function;
+    /** @private */ readonly _internal: boolean;
+    /** @private */
+    constructor(owner: EventEmitter, event: Function, listener: Function, 
+    /** @private */ _internal?: boolean);
+    unbind(): void;
+}

@@ -1,0 +1,1 @@
+{"version":3,"file":"RoomTopicEvent.js","sourceRoot":"","sources":["../../../src/models/events/RoomTopicEvent.ts"],"names":[],"mappings":";;;AAAA,2CAAyC;AAWzC;;;GAGG;AACH,MAAa,cAAe,SAAQ,sBAAiC;IACjE,YAAY,KAAU;QAClB,KAAK,CAAC,KAAK,CAAC,CAAC;IACjB,CAAC;IAED;;OAEG;IACH,IAAW,KAAK;QACZ,OAAO,IAAI,CAAC,OAAO,CAAC,KAAK,CAAC;IAC9B,CAAC;CACJ;AAXD,wCAWC"}

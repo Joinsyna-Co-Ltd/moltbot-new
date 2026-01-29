@@ -1,0 +1,162 @@
+import { __decorate } from "tslib";
+import { Enumerable } from '@d-fischer/shared-utils';
+import { rtfm } from '@twurple/common';
+import { HelixRequestBatcher } from '../../utils/HelixRequestBatcher.js';
+import { HelixPaginatedRequest } from '../../utils/pagination/HelixPaginatedRequest.js';
+import { createPaginatedResult } from '../../utils/pagination/HelixPaginatedResult.js';
+import { createPaginationQuery } from '../../utils/pagination/HelixPagination.js';
+import { BaseApi } from '../BaseApi.js';
+import { HelixGame } from './HelixGame.js';
+/**
+ * The Helix API methods that deal with games.
+ *
+ * Can be accessed using `client.games` on an {@link ApiClient} instance.
+ *
+ * ## Example
+ * ```ts
+ * const api = new ApiClient({ authProvider });
+ * const game = await api.games.getGameByName('Hearthstone');
+ * ```
+ *
+ * @meta category helix
+ * @meta categorizedTitle Games
+ */
+let HelixGameApi = class HelixGameApi extends BaseApi {
+    /** @internal */
+    _getGameByIdBatcher = new HelixRequestBatcher({
+        url: 'games',
+    }, 'id', 'id', this._client, (data) => new HelixGame(data, this._client));
+    /** @internal */
+    _getGameByNameBatcher = new HelixRequestBatcher({
+        url: 'games',
+    }, 'name', 'name', this._client, (data) => new HelixGame(data, this._client));
+    /** @internal */
+    _getGameByIgdbIdBatcher = new HelixRequestBatcher({
+        url: 'games',
+    }, 'igdb_id', 'igdb_id', this._client, (data) => new HelixGame(data, this._client));
+    /**
+     * Gets the game data for the given list of game IDs.
+     *
+     * @param ids The game IDs you want to look up.
+     */
+    async getGamesByIds(ids) {
+        return await this._getGames('id', ids);
+    }
+    /**
+     * Gets the game data for the given list of game names.
+     *
+     * @param names The game names you want to look up.
+     */
+    async getGamesByNames(names) {
+        return await this._getGames('name', names);
+    }
+    /**
+     * Gets the game data for the given list of IGDB IDs.
+     *
+     * @param igdbIds The IGDB IDs you want to look up.
+     */
+    async getGamesByIgdbIds(igdbIds) {
+        return await this._getGames('igdb_id', igdbIds);
+    }
+    /**
+     * Gets the game data for the given game ID.
+     *
+     * @param id The game ID you want to look up.
+     */
+    async getGameById(id) {
+        const games = await this._getGames('id', [id]);
+        return games[0] ?? null;
+    }
+    /**
+     * Gets the game data for the given game name.
+     *
+     * @param name The game name you want to look up.
+     */
+    async getGameByName(name) {
+        const games = await this._getGames('name', [name]);
+        return games[0] ?? null;
+    }
+    /**
+     * Gets the game data for the given IGDB ID.
+     *
+     * @param igdbId The IGDB ID you want to look up.
+     */
+    async getGameByIgdbId(igdbId) {
+        const games = await this._getGames('igdb_id', [igdbId]);
+        return games[0] ?? null;
+    }
+    /**
+     * Gets the game data for the given game ID, batching multiple calls into fewer requests as the API allows.
+     *
+     * @param id The game ID you want to look up.
+     */
+    async getGameByIdBatched(id) {
+        return await this._getGameByIdBatcher.request(id);
+    }
+    /**
+     * Gets the game data for the given game name, batching multiple calls into fewer requests as the API allows.
+     *
+     * @param name The game name you want to look up.
+     */
+    async getGameByNameBatched(name) {
+        return await this._getGameByNameBatcher.request(name);
+    }
+    /**
+     * Gets the game data for the given IGDB ID, batching multiple calls into fewer requests as the API allows.
+     *
+     * @param igdbId The IGDB ID you want to look up.
+     */
+    async getGameByIgdbIdBatched(igdbId) {
+        return await this._getGameByIgdbIdBatcher.request(igdbId);
+    }
+    /**
+     * Gets a list of the most viewed games at the moment.
+     *
+     * @param pagination
+     *
+     * @expandParams
+     */
+    async getTopGames(pagination) {
+        const result = await this._client.callApi({
+            type: 'helix',
+            url: 'games/top',
+            query: createPaginationQuery(pagination),
+        });
+        return createPaginatedResult(result, HelixGame, this._client);
+    }
+    /**
+     * Creates a paginator for the most viewed games at the moment.
+     */
+    getTopGamesPaginated() {
+        return new HelixPaginatedRequest({
+            url: 'games/top',
+        }, this._client, data => new HelixGame(data, this._client));
+    }
+    /** @internal */
+    async _getGames(filterType, filterValues) {
+        if (!filterValues.length) {
+            return [];
+        }
+        const result = await this._client.callApi({
+            type: 'helix',
+            url: 'games',
+            query: {
+                [filterType]: filterValues,
+            },
+        });
+        return result.data.map(entry => new HelixGame(entry, this._client));
+    }
+};
+__decorate([
+    Enumerable(false)
+], HelixGameApi.prototype, "_getGameByIdBatcher", void 0);
+__decorate([
+    Enumerable(false)
+], HelixGameApi.prototype, "_getGameByNameBatcher", void 0);
+__decorate([
+    Enumerable(false)
+], HelixGameApi.prototype, "_getGameByIgdbIdBatcher", void 0);
+HelixGameApi = __decorate([
+    rtfm('api', 'HelixGameApi')
+], HelixGameApi);
+export { HelixGameApi };

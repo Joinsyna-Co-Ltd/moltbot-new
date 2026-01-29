@@ -1,0 +1,9 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.flatten = void 0;
+var tslib_1 = require("tslib");
+function flatten(arr) {
+    var _a;
+    return (_a = []).concat.apply(_a, tslib_1.__spreadArray([], tslib_1.__read(arr), false));
+}
+exports.flatten = flatten;
