@@ -25,6 +25,22 @@
 
 [官网](https://molt.bot) · [文档](https://docs.molt.bot) · [快速开始](https://docs.molt.bot/start/getting-started) · [更新指南](https://docs.molt.bot/install/updating) · [展示](https://docs.molt.bot/start/showcase) · [常见问题](https://docs.molt.bot/start/faq) · [向导](https://docs.molt.bot/start/wizard) · [Docker](https://docs.molt.bot/install/docker) · [Discord](https://discord.gg/clawd)
 
+---
+
+## 目录
+
+- [平台支持](#平台支持)
+- [系统要求](#系统要求)
+- [快速安装](#快速安装)
+- [Windows 原生支持](#windows-原生支持)
+- [支持的消息渠道](#支持的消息渠道)
+- [配置示例](#配置示例)
+- [聊天命令](#聊天命令)
+- [安全说明](#安全说明)
+- [常用命令](#常用命令)
+- [文档](#文档)
+- [社区](#社区)
+
 ## 平台支持
 
 | 平台 | 状态 | 说明 |
@@ -70,70 +86,120 @@ Moltbot 现在完全支持 **Windows 原生运行**（无需 WSL2）。
 ### 前置条件
 
 1. 安装 **Node.js ≥22**：从 [nodejs.org](https://nodejs.org/) 下载
-2. 安装 **pnpm**：
+2. 安装 **pnpm**（推荐）：
    ```powershell
    npm install -g pnpm
    ```
+3. 安装 **Git**：从 [git-scm.com](https://git-scm.com/download/win) 下载
 
-### Windows 快速开始
+### Windows 快速开始（详细步骤）
+
+#### 步骤 1：克隆项目
 
 ```powershell
-# 克隆并构建
+# 打开 PowerShell（以管理员身份运行可获得更好的体验）
 git clone https://github.com/moltbot/moltbot.git
 cd moltbot
+```
 
-# 安装依赖
+#### 步骤 2：安装依赖
+
+```powershell
 pnpm install
+```
 
-# 构建项目
+> 如果遇到网络问题，可以设置镜像：
+> ```powershell
+> pnpm config set registry https://registry.npmmirror.com
+> ```
+
+#### 步骤 3：构建项目
+
+```powershell
+# 构建核心
 pnpm build
 
 # 构建控制面板 UI
 pnpm ui:build
+```
 
-# 初始设置
+#### 步骤 4：初始配置
+
+```powershell
+# 运行初始设置向导
 node moltbot.mjs setup
 
-# 配置 gateway 模式
+# 配置 gateway 模式为本地
 node moltbot.mjs config set gateway.mode local
 
-# 设置访问令牌（必需）
-node moltbot.mjs config set gateway.auth.token "你的安全令牌"
+# 设置访问令牌（必需，请使用强密码）
+node moltbot.mjs config set gateway.auth.token "your-secure-token-here"
+```
 
-# 启动 gateway
+#### 步骤 5：启动 Gateway
+
+```powershell
+# 启动 gateway 服务
 node moltbot.mjs gateway run --port 18789
 ```
+
+> Gateway 默认监听 `127.0.0.1:18789`
 
 ### 访问控制面板
 
 ```powershell
-# 获取带令牌的 URL
+# 获取带令牌的访问 URL
 node moltbot.mjs dashboard --no-open
 ```
 
-然后在浏览器中打开输出的 URL（例如：`http://127.0.0.1:18789/?token=你的令牌`）
+输出示例：
+```
+Dashboard URL: http://127.0.0.1:18789/?token=your-secure-token-here
+```
+
+在浏览器中打开此 URL 即可访问控制面板。
 
 ### 配置 AI 模型
 
-要使用聊天功能，您需要配置 AI 模型的 API 密钥：
+要使用聊天功能，您需要配置 AI 模型的 API 密钥。
 
-#### 使用 Anthropic (Claude)
+#### 方式一：使用 Anthropic (Claude) - 推荐
 
 ```powershell
-node moltbot.mjs config set models.providers.anthropic.apiKey "你的API密钥"
+# 设置 Anthropic API 密钥
+node moltbot.mjs config set models.providers.anthropic.apiKey "sk-ant-xxxxx"
+
+# 可选：设置默认模型
+node moltbot.mjs config set agents.defaults.model "anthropic/claude-opus-4-5"
 ```
 
-#### 使用 OpenAI
+> 获取 API 密钥：访问 [console.anthropic.com](https://console.anthropic.com/)
+
+#### 方式二：使用 OpenAI
 
 ```powershell
-node moltbot.mjs config set models.providers.openai.apiKey "你的API密钥"
+# 设置 OpenAI API 密钥
+node moltbot.mjs config set models.providers.openai.apiKey "sk-xxxxx"
+
+# 设置默认模型为 GPT-4o
 node moltbot.mjs config set agents.defaults.model "openai/gpt-4o"
 ```
 
+> 获取 API 密钥：访问 [platform.openai.com](https://platform.openai.com/)
+
+#### 方式三：使用其他模型提供商
+
+Moltbot 还支持：
+- **Google Gemini**：`google/gemini-2.0-flash`
+- **DeepSeek**：`deepseek/deepseek-chat`
+- **Groq**：`groq/llama-3.3-70b-versatile`
+
 ### Windows 服务管理
 
+将 Moltbot 安装为 Windows 后台服务，实现开机自启动：
+
 ```powershell
-# 安装为 Windows 计划任务
+# 安装为 Windows 计划任务（开机自启动）
 node moltbot.mjs daemon install
 
 # 查看服务状态
@@ -141,6 +207,9 @@ node moltbot.mjs daemon status
 
 # 停止服务
 node moltbot.mjs daemon stop
+
+# 启动服务
+node moltbot.mjs daemon start
 
 # 重启服务
 node moltbot.mjs daemon restart
@@ -153,46 +222,100 @@ node moltbot.mjs daemon uninstall
 
 | 功能 | 状态 | 说明 |
 |------|------|------|
-| Gateway 服务 | ✅ | 使用 Windows 计划任务 |
-| WhatsApp | ✅ | 完全支持 |
-| Telegram | ✅ | 完全支持 |
-| Discord | ✅ | 完全支持 |
-| Slack | ✅ | 完全支持 |
-| Signal | ✅ | 需要 signal-cli |
+| Gateway 服务 | ✅ | 使用 Windows 计划任务，支持开机自启 |
+| WhatsApp | ✅ | 完全支持，通过 QR 码链接 |
+| Telegram | ✅ | 完全支持，需要 Bot Token |
+| Discord | ✅ | 完全支持，需要 Bot Token |
+| Slack | ✅ | 完全支持，Socket Mode |
+| Signal | ✅ | 需要安装 signal-cli |
 | Google Chat | ✅ | 完全支持 |
 | LINE | ✅ | 完全支持 |
 | iMessage | ❌ | 仅限 macOS |
-| 浏览器控制 | ✅ | Chrome/Edge/Brave |
+| 浏览器控制 | ✅ | 支持 Chrome/Edge/Brave |
 | 控制面板 UI | ✅ | 完全支持 |
+| WebChat | ✅ | 完全支持 |
+| 语音功能 | ⚠️ | 部分支持（无 Voice Wake） |
 
 ### Windows 故障排除
 
 #### 1. 构建时出现 "bash not found" 错误
 
-项目现在使用跨平台的 Node.js 脚本。确保您使用的是最新版本。
+项目已使用跨平台的 Node.js 脚本。如果仍遇到此问题：
+```powershell
+# 确保使用最新版本
+git pull origin main
+pnpm install
+pnpm build
+```
 
 #### 2. Gateway 令牌错误
 
 启动前必须设置令牌：
 ```powershell
-node moltbot.mjs config set gateway.auth.token "你的令牌"
+node moltbot.mjs config set gateway.auth.token "your-token"
 ```
 
-#### 3. 无法聊天
+#### 3. 无法聊天 / 模型错误
 
-需要配置 AI 模型 API 密钥（见上文"配置 AI 模型"部分）。
+确保已配置 AI 模型 API 密钥：
+```powershell
+# 检查当前配置
+node moltbot.mjs config get models.providers
 
-#### 4. 健康检查
+# 设置 API 密钥
+node moltbot.mjs config set models.providers.anthropic.apiKey "your-key"
+```
+
+#### 4. 端口被占用
 
 ```powershell
+# 检查端口占用
+netstat -ano | findstr :18789
+
+# 使用其他端口
+node moltbot.mjs gateway run --port 18790
+```
+
+#### 5. 健康检查
+
+```powershell
+# 运行诊断
 node moltbot.mjs doctor
+
+# 查看详细状态
+node moltbot.mjs status --all
 ```
 
-#### 5. 查看状态
+#### 6. 查看日志
 
 ```powershell
-node moltbot.mjs status
+# 查看实时日志
+node moltbot.mjs logs --follow
+
+# 查看最近 100 行日志
+node moltbot.mjs logs --lines 100
 ```
+
+#### 7. 防火墙问题
+
+如果需要从其他设备访问，请在 Windows 防火墙中允许端口：
+```powershell
+# 以管理员身份运行
+netsh advfirewall firewall add rule name="Moltbot Gateway" dir=in action=allow protocol=TCP localport=18789
+```
+
+### Windows vs WSL2 对比
+
+| 特性 | Windows 原生 | WSL2 |
+|------|-------------|------|
+| 安装复杂度 | 简单 | 中等 |
+| 性能 | 良好 | 优秀 |
+| 兼容性 | 大部分功能 | 完全兼容 |
+| 浏览器控制 | ✅ | ✅ |
+| Signal | 需要额外配置 | 更简单 |
+| 开发体验 | 良好 | 更接近 Linux |
+
+**推荐**：普通用户使用 Windows 原生；开发者或需要完整 Linux 环境的用户使用 WSL2。
 
 ## 支持的消息渠道
 
@@ -281,6 +404,31 @@ moltbot config get gateway.mode
 moltbot config set gateway.mode local
 ```
 
+## 从源码开发
+
+如果您想参与开发或需要最新功能：
+
+```powershell
+# 克隆仓库
+git clone https://github.com/moltbot/moltbot.git
+cd moltbot
+
+# 安装依赖
+pnpm install
+
+# 开发模式（自动重载）
+pnpm gateway:watch
+
+# 运行测试
+pnpm test
+
+# 代码检查
+pnpm lint
+
+# 格式化代码
+pnpm format
+```
+
 ## 文档
 
 - [快速开始](https://docs.molt.bot/start/getting-started)
@@ -288,12 +436,14 @@ moltbot config set gateway.mode local
 - [安全指南](https://docs.molt.bot/gateway/security)
 - [故障排除](https://docs.molt.bot/channels/troubleshooting)
 - [Windows 指南](https://docs.molt.bot/platforms/windows)
+- [架构概述](https://docs.molt.bot/concepts/architecture)
+- [模型配置](https://docs.molt.bot/concepts/models)
 
 ## 社区
 
-- [Discord](https://discord.gg/clawd)
-- [GitHub Issues](https://github.com/moltbot/moltbot/issues)
-- [贡献指南](CONTRIBUTING.md)
+- [Discord](https://discord.gg/clawd) - 加入我们的社区讨论
+- [GitHub Issues](https://github.com/moltbot/moltbot/issues) - 报告问题或提出建议
+- [贡献指南](CONTRIBUTING.md) - 了解如何参与贡献
 
 ## 许可证
 
@@ -302,3 +452,5 @@ MIT License - 详见 [LICENSE](LICENSE) 文件。
 ---
 
 由 Peter Steinberger 和社区构建。🦞
+
+**感谢所有贡献者！**
